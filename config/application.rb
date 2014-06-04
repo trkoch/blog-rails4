@@ -19,5 +19,11 @@ module BlogRails4
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # Default is false
+    config.action_controller.permit_all_parameters = true
+
+    # For demonstration purposes, disable forgery protection (security measure)
+    config.action_controller.allow_forgery_protection = false
   end
 end
