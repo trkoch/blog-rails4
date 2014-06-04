@@ -21,7 +21,7 @@ module BlogRails4
     # config.i18n.default_locale = :de
 
     # Default is false
-    config.action_controller.permit_all_parameters = true
+    config.action_controller.permit_all_parameters = false
 
     # For demonstration purposes, disable forgery protection (security measure)
     config.action_controller.allow_forgery_protection = false
