@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
   namespace :blog do
     resources :comments
-    resources :posts
+
+    # While RESTful routes strongly suggest a certain style,
+    # they can be customized to fit special needs.
+    resources :posts do
+      member do
+        get :archive
+        post :archive
+
+        # This can also be written using the more general match syntax
+        # match :archive, via: [:get, :post]
+      end
+    end
   end
 
   resources :pages

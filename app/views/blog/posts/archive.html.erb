@@ -1,0 +1,12 @@
+<h1>Archive post</h1>
+
+<p>Do you want to archive this post?</p>
+
+<%= form_for(archive_blog_post_path) do |f| %>
+  <div class="actions">
+    <%= f.submit "Confirm" %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', [:blog, @post] %> |
+<%= link_to 'Back', blog_posts_path %>
