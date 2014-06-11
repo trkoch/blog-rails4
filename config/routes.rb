@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # get '/pages', to: 'pages#index'
 
   # There is a short-hand that reads:
-  get '/pages' => 'pages#index'
+  # get '/pages' => 'pages#index'
 
   # NOTE: we are using two factors, HTTP method (GET) and request path (/pages).
   # Valid HTTP methods include GET, POST, PUT, PATCH and DELETE.
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # It is supported (even suggested) to reuse the same path with different methods.
   # Here is an example using the POST method with a request path that is
   # already in use (/pages).
-  post '/pages' => 'pages#create'
+  # post '/pages' => 'pages#create'
 
   # Within our controllers and templates we often generate URLs. Instead
   # of hard-coding the URLs, it is advisable to reuse the information that
@@ -50,12 +50,38 @@ Rails.application.routes.draw do
   # <a href="/pages">Pages</a>
 
   # We can customize the name
-  get 'pages/new' => 'pages#new', as: :new_page
+  # get 'pages/new' => 'pages#new', as: :new_page
 
   # The path pattern may contain placeholders
-  get 'pages/:id' => 'pages#show', as: :page
+  # get 'pages/:id' => 'pages#show', as: :page
 
   # Now, id is available as params[:id] in pages#show
+
+  # Resources generates a set of routes, following conventions outlined by the REST philosophy
+
+  # resources :pages
+
+  # What are those routes?
+  # $ rake routes
+  #     pages GET    /pages(.:format)                  pages#index
+  #           POST   /pages(.:format)                  pages#create
+  #  new_page GET    /pages/new(.:format)              pages#new
+  # edit_page GET    /pages/:id/edit(.:format)         pages#edit
+  #      page GET    /pages/:id(.:format)              pages#show
+  #           PATCH  /pages/:id(.:format)              pages#update
+  #           PUT    /pages/:id(.:format)              pages#update
+  #           DELETE /pages/:id(.:format)              pages#destroy
+
+  # Resources is essentially a short-hand. You can configure those routes
+  # manually like this.
+  get    'pages' => 'pages#index', as: :pages
+  post   'pages' => 'pages#create'
+  get    'pages/new' => 'pages#new', as: :new_page
+  get    'pages/:id/edit' => 'pages#edit', as: :edit_page
+  get    'pages/:id' => 'pages#show', as: :page
+  patch  'pages/:id' => 'pages#update'
+  put    'pages/:id' => 'pages#update'
+  delete 'pages/:id' => 'pages#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
