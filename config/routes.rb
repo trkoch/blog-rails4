@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :pages
+
   get 'comments/show'
 
   get 'comments/index'
