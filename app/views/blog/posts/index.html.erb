@@ -1,4 +1,8 @@
+<% if controller.action_name == "index" %>
 <h1>Listing posts</h1>
+<% else %>
+<h1>Listing most recent posts</h1>
+<% end %>
 
 <table>
   <thead>

@@ -12,6 +12,13 @@ Rails.application.routes.draw do
         # This can also be written using the more general match syntax
         # match :archive, via: [:get, :post]
       end
+
+      collection do
+        get :recent
+      end
+
+      # Short-hand notation
+      # get :recent, on: :collection
     end
   end
 

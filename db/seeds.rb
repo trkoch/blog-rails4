@@ -9,3 +9,8 @@
 user = User.find_or_create_by(name: "John Doe")
 post = Post.find_or_create_by(title: "Post A")
 Comment.find_or_create_by(user_id: user, post_id: post, body: "Awesome!")
+
+Post.find_or_create_by(title: "Post B")
+Post.find_or_create_by(title: "Post C")
+Post.find_or_create_by(title: "Post D")
+Post.find_or_create_by(title: "Post E")

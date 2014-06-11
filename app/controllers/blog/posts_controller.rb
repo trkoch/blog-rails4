@@ -7,6 +7,11 @@ class Blog::PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def recent
+    @posts = Post.limit(3)
+    render :index
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
