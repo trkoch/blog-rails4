@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.create(name: "John Doe")
-post = Post.create(title: "Post A")
-Comment.create(user_id: user, post_id: post, body: "Awesome!")
+user = User.find_or_create_by(name: "John Doe")
+post = Post.find_or_create_by(title: "Post A")
+Comment.find_or_create_by(user_id: user, post_id: post, body: "Awesome!")
