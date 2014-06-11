@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  resources :pages
+
   #
   # NOTE: Comments given here are in english to match auto-generated comments.
   #
@@ -74,14 +76,14 @@ Rails.application.routes.draw do
 
   # Resources is essentially a short-hand. You can configure those routes
   # manually like this.
-  get    'pages' => 'pages#index', as: :pages
-  post   'pages' => 'pages#create'
-  get    'pages/new' => 'pages#new', as: :new_page
-  get    'pages/:id/edit' => 'pages#edit', as: :edit_page
-  get    'pages/:id' => 'pages#show', as: :page
-  patch  'pages/:id' => 'pages#update'
-  put    'pages/:id' => 'pages#update'
-  delete 'pages/:id' => 'pages#destroy'
+  # get    'pages' => 'pages#index', as: :pages
+  # post   'pages' => 'pages#create'
+  # get    'pages/new' => 'pages#new', as: :new_page
+  # get    'pages/:id/edit' => 'pages#edit', as: :edit_page
+  # get    'pages/:id' => 'pages#show', as: :page
+  # patch  'pages/:id' => 'pages#update'
+  # put    'pages/:id' => 'pages#update'
+  # delete 'pages/:id' => 'pages#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
