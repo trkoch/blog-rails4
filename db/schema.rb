@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20140611104730) do
 
   create_table "comments", force: true do |t|
+    t.string  "title"
     t.text    "body"
     t.integer "user_id"
     t.integer "post_id"
