@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
     # While RESTful routes strongly suggest a certain style,
     # they can be customized to fit special needs.
-    resources :posts do
+
+    # Map RESTful actions for posts resource, except destroy
+    resources :posts, except: :destroy do
       member do
         get :archive
         post :archive
