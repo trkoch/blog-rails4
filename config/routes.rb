@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :blog do
+    resources :comments
+  end
+
   resources :pages
 
   resources :posts
