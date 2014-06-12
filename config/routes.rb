@@ -1,3 +1,5 @@
+require "json"
+
 Rails.application.routes.draw do
   namespace :blog do
     # While RESTful routes strongly suggest a certain style,
@@ -24,6 +26,29 @@ Rails.application.routes.draw do
       # get :recent, on: :collection
     end
   end
+
+  # The endpoint of a route can also be given as a Rack application.
+  # A Rack application responds to #call and returns [status, headers, body].
+  # class HelloWorld
+  #   def call(env)
+  #     [200, {"Content-Type" => "text/html"}, ["Hello, World!"]]
+  #   end
+  # end
+  # get :hello, to: HelloWorld.new
+
+  # Since a proc responds to #call, there is a more concise way to write this
+  get :hello, to: proc { |env|
+    [200, {"Content-Type" => "text/html"}, ["Hello, World!"]]
+  }
+
+  # Call receives one parameter: the environment.
+  get :env, to: proc { |env|
+    [200, {"Content-Type" => "text/plaintext"}, [JSON.pretty_generate(env)]]
+  }
+
+  # Controller actions are actually Rack endpoints.
+  # get :recent, to: 'blog/posts#index'
+  get :recent, to: Blog::PostsController.action(:recent)
 
   resources :pages
 
