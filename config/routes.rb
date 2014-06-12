@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   namespace :blog do
-    resources :comments
-
     # While RESTful routes strongly suggest a certain style,
     # they can be customized to fit special needs.
 
     # Map RESTful actions for posts resource, except destroy
     resources :posts, except: :destroy do
+      # Resources can be nested
+      resources :comments, only: :show
+
       member do
         get :archive
         post :archive
