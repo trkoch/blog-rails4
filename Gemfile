@@ -38,3 +38,5 @@ gem 'spring',        group: :development
 # Use byebug
 gem 'pry-byebug', group: [:development, :test]
 
+gem 'exception_notification', '~> 4.0.1'
+
