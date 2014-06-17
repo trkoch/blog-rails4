@@ -98,4 +98,11 @@ Rails.application.configure do
     from: 'no-reply@example.com'
   }
 
+  # Exception notification
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      email_prefix: "[Blog] ",
+      sender_address: %{"notifier" <notifier@example.com>},
+      exception_recipients: %w{tr.koch@gmail.com}
+    }
 end
