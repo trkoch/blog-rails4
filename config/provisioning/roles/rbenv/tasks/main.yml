@@ -1,0 +1,25 @@
+- name: Install ruby build dependencies
+  sudo: yes
+  apt: name={{ item }}
+  with_items: ruby_deps
+
+- name: Install rbenv
+  git: repo=git://github.com/sstephenson/rbenv.git dest=~/.rbenv
+
+- name: Ensure fragments bash dir exists
+  file: dest=~/.bash.d/ state=directory
+
+- name: Install rbenv bash file
+  copy: src=50_rbenv.bash dest=~/.bash.d/50_rbenv.bash mode=700
+
+- name: Source rbenv bash file in dot bashrc
+  lineinfile: dest=~/.bash_profile regexp="rbenv" insertafter=EOF line="source ~/.bash.d/50_rbenv.bash" create=yes
+
+- name: Create plugin directory
+  file: path=~/.rbenv/plugins/ mode=0755 state=directory
+
+- name: Install ruby-build
+  git: repo=git://github.com/sstephenson/ruby-build.git dest=~/.rbenv/plugins/ruby-build
+
+- name: Add .gemrc
+  copy: src=gemrc dest=~/.gemrc
