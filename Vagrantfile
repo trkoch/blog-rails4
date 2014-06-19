@@ -11,6 +11,7 @@ PROJECT = "blog"
 ANSIBLE_PATH = "config/provisioning/"
 ANSIBLE_VARS = {
   app_path: "/home/vagrant/app",
+  ruby_version: "2.1.2"
   # Other variables specific to playbook
 }
 
@@ -40,8 +41,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder ".", "/home/vagrant/app", sync_opts
   config.vm.synced_folder ANSIBLE_PATH, "/home/vagrant/provisioning", sync_opts
 
-  # config.ssh.forward_agent = true
-
   config.vm.provider "virtualbox" do |vb|
     # Don't boot with headless mode
     # vb.gui = true
@@ -53,7 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Use ansible provisioner provided by vagrant if ansible-playbook is available locally
   if which("ansible-playbook")
     config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "#{ANSIBLE_PATH}/#{PROJECT}.yml"
+      ansible.playbook = "#{ANSIBLE_PATH}/app.yml"
       ansible.limit = "app"
       ansible.groups = {
         "app" => ["default"]
@@ -77,12 +76,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     $playbook = <<-SCRIPT
       cd ~/provisioning
-      ansible-playbook #{PROJECT}.yml --connection=local \
-        -i environments/development/inventory.local
-        --extra-vars=" + #{ANSIBLE_VARS.map { |k,v| "#{k}=#{v}" }.join(" ")}
+      ansible-playbook #{PROJECT}.yml \
+        --inventory=localhost, \
+        --connection=local \
+        --extra-vars=" + #{ANSIBLE_VARS.map { |k,v| "#{k}=#{v}" }.join(" ")}"
     SCRIPT
 
     config.vm.provision "shell", inline: $ansible
     config.vm.provision "shell", inline: $playbook, privileged: false
+  end
+
+  if sync_opts[:type] == "rsync"
+    config.vm.post_up_message = "Run 'vagrant rsync-auto' to sync folders"
   end
 end
