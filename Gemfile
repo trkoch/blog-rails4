@@ -35,6 +35,9 @@ gem 'spring',        group: :development
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Pry
+gem 'pry-rails'
+
 # Use byebug
 gem 'pry-byebug', group: [:development, :test]
 
