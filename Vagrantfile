@@ -76,7 +76,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     $playbook = <<-SCRIPT
       cd ~/provisioning
-      ansible-playbook #{PROJECT}.yml \
+      ansible-playbook app.yml \
         --inventory=localhost, \
         --connection=local \
         --extra-vars=" + #{ANSIBLE_VARS.map { |k,v| "#{k}=#{v}" }.join(" ")}"
