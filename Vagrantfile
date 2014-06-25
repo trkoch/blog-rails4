@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "private_network", ip: "192.168.201.2"
   config.vm.network "forwarded_port", guest: 3000, host: 3000
 
-  sync_opts = { type: windows? ? nil : "nfs" }
+  sync_opts = { type: windows? ? "smb" : "nfs" }
   config.vm.synced_folder ".", "/home/vagrant/app", sync_opts
   config.vm.synced_folder ANSIBLE_PATH, "/home/vagrant/provisioning", sync_opts
 
