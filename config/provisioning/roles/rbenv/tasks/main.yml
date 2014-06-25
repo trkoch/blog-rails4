@@ -6,6 +6,9 @@
 - name: Install rbenv
   git: repo=git://github.com/sstephenson/rbenv.git dest=~/.rbenv
 
+- name: Create bash_profile
+  file: dest=~/.bash_profile state=touch
+
 - name: Add rbenv to path
   lineinfile: dest=~/.bash_profile insertbefore=BOF
               line="export PATH=\"$HOME/.rbenv/bin:$PATH\""
