@@ -28,6 +28,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -49,6 +52,7 @@ GEM
     execjs (2.1.0)
     hike (1.2.3)
     i18n (0.6.9)
+    interception (0.5)
     jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -74,6 +78,9 @@ GEM
       pry (~> 0.9.12)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    pry-rescue (1.4.1)
+      interception (>= 0.5)
+      pry
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
@@ -141,11 +148,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   pry-byebug
   pry-rails
+  pry-rescue
   pry-stack_explorer
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
