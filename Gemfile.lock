@@ -49,6 +49,7 @@ GEM
     execjs (2.1.0)
     hike (1.2.3)
     i18n (0.6.9)
+    interception (0.5)
     jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -73,6 +74,9 @@ GEM
       pry (~> 0.9.12)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    pry-rescue (1.4.1)
+      interception (>= 0.5)
+      pry
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
@@ -141,6 +145,7 @@ DEPENDENCIES
   jquery-rails
   pry-byebug
   pry-rails
+  pry-rescue
   pry-stack_explorer
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
