@@ -6,8 +6,10 @@ describe "posts" do
     Post.create!(title: "Another title", body: "Another body")
     visit "/blog/posts"
     expect(page).to have_content("Listing posts")
-    expect(page).to have_css("tbody tr", count: 2)
-    expect(page).to have_css("tbody td", text: "Some title")
-    expect(page).to have_css("tbody td", text: "Some body")
+    within "table.posts" do
+      expect(page).to have_css("tbody tr", count: 2)
+      expect(page).to have_css("tbody td", text: "Some title")
+      expect(page).to have_css("tbody td", text: "Some body")
+    end
   end
 end
