@@ -42,3 +42,13 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-rescue'
 end
+
+# Testing
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'spring-commands-rspec'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+  gem 'launchy'
+end
