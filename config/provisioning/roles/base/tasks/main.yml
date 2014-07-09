@@ -1,0 +1,25 @@
+- name: Update apt cache
+  sudo: yes
+  apt: update-cache=yes
+
+- name: Install python tools
+  sudo: yes
+  apt: pkg={{ item }}
+  with_items:
+    - python
+    - python-setuptools
+    - python-software-properties
+
+- name: Install developer tools
+  sudo: yes
+  apt: pkg={{ item }}
+  with_items:
+    - vim
+
+- name: Install ansible dependencies
+  sudo: yes
+  apt: pkg={{ item }}
+  with_items:
+    - libpq-dev
+    - python-psycopg2
+    - python-passlib

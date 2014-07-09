@@ -1,0 +1,7 @@
+- hosts: all
+
+  roles:
+    - { role: base, tags: base }
+    - { role: rbenv, tags: rbenv }
+    - { role: ruby, tags: ruby }
+    - { role: app, tags: app }

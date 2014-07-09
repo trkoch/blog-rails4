@@ -1,0 +1,15 @@
+- name: Install bundler
+  command: bash -lc "gem install bundler"
+
+- name: Install bundled gems dependencies
+  sudo: yes
+  apt: pkg={{ item }}
+  with_items:
+    # capybara-webkit
+    - qt4-dev-tools
+    - libqt4-dev
+    - libqt4-core
+    - libqt4-gui
+
+- name: Install bundled gems
+  command: bash -lc "cd {{ app_path }}; bundle install"

@@ -1,0 +1,27 @@
+- name: Install ruby build dependencies
+  sudo: yes
+  apt: name={{ item }}
+  with_items: ruby_deps
+
+- name: Install rbenv
+  git: repo=git://github.com/sstephenson/rbenv.git dest=~/.rbenv
+
+- name: Create bash_profile
+  file: dest=~/.bash_profile state=touch
+
+- name: Add rbenv to path
+  lineinfile: dest=~/.bash_profile insertbefore=BOF
+              line="export PATH=\"$HOME/.rbenv/bin:$PATH\""
+
+- name: Init rbenv
+  lineinfile: dest=~/.bash_profile insertafter=EOF
+              line="eval \"$(rbenv init -)\""
+
+- name: Create plugin directory
+  file: path=~/.rbenv/plugins/ mode=0755 state=directory
+
+- name: Install ruby-build
+  git: repo=git://github.com/sstephenson/ruby-build.git dest=~/.rbenv/plugins/ruby-build
+
+- name: Add .gemrc
+  copy: src=gemrc dest=~/.gemrc
