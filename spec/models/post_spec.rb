@@ -9,9 +9,9 @@ describe Post do
       expect(post.excerpt).to eq(post.body)
     end
 
-    it "truncates body to first 100 characters" do
+    it "truncates body to first 100 characters plus ellipsis" do
       post.body = "X" * 100 + "Z"
-      expect(post.excerpt.length).to eq(100)
+      expect(post.excerpt.length).to eq(100 + 1)
       expect(post.excerpt).not_to include("Z")
     end
 
