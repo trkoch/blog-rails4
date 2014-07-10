@@ -19,5 +19,12 @@ describe Post do
       post.body = "X" * 200
       expect(post.excerpt).to match(/X…$/)
     end
+
+    it "ignores blank input" do
+      post.body = nil
+      expect(post.excerpt).to eq(post.body)
+      post.body = ""
+      expect(post.excerpt).to eq(post.body)
+    end
   end
 end
