@@ -18,6 +18,24 @@ describe "posts" do
     expect(body).to have_content(str)
   end
 
+  it "creates post" do
+    visit "/blog/posts"
+    click_link "New Post"
+    fill_in "Title", with: "Some title"
+    fill_in "Body", with: "Some body"
+    click_button "Create Post"
+    expect(page).to have_content("Post was successfully created.")
+  end
+
+  it "does not allow to create invalid post" do
+    visit "/blog/posts"
+    click_link "New Post"
+    fill_in "Title", with: ""
+    fill_in "Body", with: "Some body"
+    click_button "Create Post"
+    expect(page).to have_content("Title can't be blank")
+  end
+
   describe "index" do
     it "shows listing of posts" do
       Post.create!(title: "Some title", body: "Some body")
