@@ -14,7 +14,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td class="title"><%= post.title %></td>
-        <td class="body"><%= post.body %></td>
+        <td class="body"><%= post.excerpt %></td>
         <td class="published"><%= post.published %></td>
         <td><%= link_to 'Show', [:blog, post] %></td>
         <td><%= link_to 'Edit', edit_blog_post_path(post) %></td>
