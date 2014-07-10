@@ -5,6 +5,19 @@ describe "posts" do
     Post.delete_all
   end
 
+  it "shows excerpt of post when appropriate" do
+    str =  "A very long body," + " some words, " * 10 + " here we end"
+    post = Post.create!(title: "A title", body: str)
+
+    visit "/blog/posts"
+    body = page.all("table.posts td.body").first
+    expect(body).to have_no_content("here we end")
+
+    visit "/blog/posts/#{post.id}"
+    body = page.find(".body")
+    expect(body).to have_content(str)
+  end
+
   describe "index" do
     it "shows listing of posts" do
       Post.create!(title: "Some title", body: "Some body")
