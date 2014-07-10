@@ -9,5 +9,10 @@ describe Post do
       expect(post.excerpt.length).to eq(100)
       expect(post.excerpt).not_to include("Z")
     end
+
+    it "appends ellipsis when truncating" do
+      post.body = "X" * 200
+      expect(post.excerpt).to match(/X…$/)
+    end
   end
 end
